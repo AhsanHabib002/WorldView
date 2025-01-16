@@ -3,7 +3,10 @@
 const Home = () => {
     return (
         <div>
-            <h1>This my home</h1>
+            {/* Hero */}
+            <div className="text-black my-8">
+                <h1 className="font-cinzel font-extrabold text-[7vw] lg:text-[6vw] text-center">All Trending News</h1>
+            </div>
         </div>
     );
 };
