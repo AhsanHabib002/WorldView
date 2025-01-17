@@ -35,7 +35,13 @@ const Login = () => {
         Swal.fire("Logged In", "Your Login is Successful.", "success");
       })
       .catch((error) => {
-        toast.error(`Error: ${error.message}`);
+        if (error.code === "auth/user-not-found") {
+          toast.error("User not found. Please check your email.");
+        } else if (error.code === "auth/wrong-password") {
+          toast.error("Incorrect password. Please try again.");
+        } else {
+          toast.error(`Login failed: ${error.message}`);
+        }
       });
   };
   const handleGoogleLogin = () => {
@@ -49,20 +55,14 @@ const Login = () => {
         Swal.fire("Logged In", "Your Login is Successful.", "success");
       })
       .catch((error) => {
-        if (error.code === "auth/user-not-found") {
-          toast.error("User not found. Please check your email.");
-        } else if (error.code === "auth/wrong-password") {
-          toast.error("Incorrect password. Please try again.");
-        } else {
-          toast.error(`Login failed: ${error.message}`);
-        }
+        toast.error(`Error: ${error.message}`);
       });
   };
 
   return (
     <>
       <div className="max-w-[90rem] mx-auto">
-      <ToastContainer position="top-right" autoClose={3000} />
+        <ToastContainer position="top-right" autoClose={3000} />
         <div className="max-w-[450px] mx-auto py-[90px] px-2">
           <div className="card bg-base-100 w-full  shrink-0 shadow-2xl">
             <form onSubmit={handleLogin} className="card-body">

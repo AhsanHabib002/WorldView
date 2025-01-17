@@ -3,9 +3,13 @@ import useAuth from "../../Hooks/useAuth";
 import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
-  const { creatUser, setUser, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const { creatUser, setUser, updateUserProfile, googleLogin } = useAuth();
+  const from = location.state || "/";
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [show, setShow] = useState(false);
@@ -47,11 +51,36 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        updateUserProfile({ displayName: name, photoURL: photo });
-        toast.success("Resgitration Successful");
+        updateUserProfile({ displayName: name, photoURL: photo }).then(() => {
+          const userInfo = {
+            name: user.displayName,
+            email: user.email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+                console.log('user added to the database')
+              toast.success("Resgitration Successful");
+              setTimeout(() => {
+                navigate("/");
+              }, 2000);
+            }
+          });
+        });
+      })
+      .catch((error) => {
+        toast.error(`Error: ${error.message}`);
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
         setTimeout(() => {
-          navigate("/");
+          navigate(from);
         }, 2000);
+        Swal.fire("Logged In", "Your Login is Successful.", "success");
       })
       .catch((error) => {
         toast.error(`Error: ${error.message}`);
@@ -124,14 +153,17 @@ const Register = () => {
                 </div>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-black text-white">
-                  Register Now
-                </button>
+                <button className="btn bg-black text-white">Signup Now</button>
               </div>
             </form>
             <div className="px-8 w-full">
               <div className="divider"></div>
-
+              <button
+                onClick={handleGoogleLogin}
+                className="btn btn-outline w-full"
+              >
+                Login With Google
+              </button>
               <div className="flex gap-2 mt-4 text-sm  mb-6">
                 <p>Already have an account?</p>
                 <div className="font-semibold text-[#6980ff]">
