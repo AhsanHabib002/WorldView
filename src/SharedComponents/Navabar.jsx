@@ -1,6 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 const Navabar = () => {
+  const { user, logout } = useAuth();
   return (
     <>
       <div className=" bg-black text-white">
@@ -56,22 +58,62 @@ const Navabar = () => {
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 flex gap-4">
-              <NavLink to="/" className="text-[16px]">Home</NavLink>
-              <NavLink to="/" className="text-[16px]">Add Articles</NavLink>
-              <NavLink to="/" className="text-[16px]">All Articles</NavLink>
-              <NavLink to="/" className="text-[16px]">Subscription</NavLink>
-              <NavLink to="/" className="text-[16px]">Dashboard</NavLink>
-              <NavLink to="/" className="text-[16px]">My Articles</NavLink>
-              <NavLink to="/" className="text-[16px]">Premium Articles</NavLink>
+              <NavLink to="/" className="text-[16px]">
+                Home
+              </NavLink>
+              <NavLink to="/" className="text-[16px]">
+                Add Articles
+              </NavLink>
+              <NavLink to="/" className="text-[16px]">
+                All Articles
+              </NavLink>
+              <NavLink to="/" className="text-[16px]">
+                Subscription
+              </NavLink>
+              <NavLink to="/" className="text-[16px]">
+                Dashboard
+              </NavLink>
+              <NavLink to="/" className="text-[16px]">
+                My Articles
+              </NavLink>
+              <NavLink to="/" className="text-[16px]">
+                Premium Articles
+              </NavLink>
             </ul>
           </div>
           <div className="navbar-end  gap-4">
-            <Link to="/">
-            <button className="btn bg-white text-black">Login</button>
-            </Link>
-            <Link to="/">
-            <button className="btn btn-outline border-white text-white">Sign Up</button>
-            </Link>
+            {user && user?.email ? (
+              <>
+                <div className="flex items-center gap-2">
+                  <Link>
+                    <button className="btn btn-ghost btn-circle">
+                      <div className="w-10 rounded-full">
+                        <img className="w-10 h-10 rounded-full cursor-pointer" alt={user.displayName} src={user.photoURL} />
+                      </div>
+                    </button>
+                  </Link>
+                  <div>
+                    <button
+                      onClick={logout}
+                      className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button className="btn bg-white text-black">Login</button>
+                </Link>
+                <Link to="/register">
+                  <button className="btn btn-outline border-white text-white">
+                    Sign Up
+                  </button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
