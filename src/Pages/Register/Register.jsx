@@ -58,7 +58,7 @@ const Register = () => {
           };
           axiosPublic.post("/users", userInfo).then((res) => {
             if (res.data.insertedId) {
-                console.log('user added to the database')
+              console.log("user added to the database");
               toast.success("Resgitration Successful");
               setTimeout(() => {
                 navigate("/");
@@ -77,10 +77,18 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        setTimeout(() => {
-          navigate(from);
-        }, 2000);
-        Swal.fire("Logged In", "Your Login is Successful.", "success");
+        const userInfo = {
+          name: user?.displayName,
+          email: user?.email,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            setTimeout(() => {
+              navigate(from);
+            }, 2000);
+            Swal.fire("Logged In", "Your Login is Successful.", "success");
+          }
+        });
       })
       .catch((error) => {
         toast.error(`Error: ${error.message}`);
