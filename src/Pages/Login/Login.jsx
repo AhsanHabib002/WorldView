@@ -55,6 +55,7 @@ const Login = () => {
         const userInfo = {
           name: user?.displayName,
           email: user?.email,
+          photo: user?.photoURL
         };
         axiosPublic.post("/users", userInfo).then((res) => {
             Swal.fire("Logged In", "Your Login is Successful.", "success");

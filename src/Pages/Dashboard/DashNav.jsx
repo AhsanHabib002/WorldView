@@ -1,4 +1,6 @@
 import React from "react";
+import { FaHome, FaUser } from "react-icons/fa";
+import { FaUserGroup } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 
 const DashNav = () => {
@@ -23,9 +25,20 @@ const DashNav = () => {
           ></label>
           <ul className="menu bg-black text-white min-h-full w-64 p-4">
             {/* Sidebar content here */}
-            <NavLink className="text-[16px] m-3" to="/dashboard">Admin Home</NavLink>
-            <NavLink className="text-[16px] m-3" to="/dashboard/alluser">All User</NavLink>
-            
+            <li>
+              <NavLink className="flex gap-2 text-[16px] m-3" to="/dashboard">
+                <FaHome></FaHome> Admin Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="flex gap-2 text-[16px] m-3"
+                to="/dashboard/alluser"
+              >
+                <FaUserGroup></FaUserGroup>
+                All User
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

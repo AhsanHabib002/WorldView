@@ -55,6 +55,7 @@ const Register = () => {
           const userInfo = {
             name: user.displayName,
             email: user.email,
+            photo: user.photoURL
           };
           axiosPublic.post("/users", userInfo).then((res) => {
             if (res.data.insertedId) {
@@ -80,6 +81,7 @@ const Register = () => {
         const userInfo = {
           name: user?.displayName,
           email: user?.email,
+          photo: user?.photoURL
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           if (res.data.insertedId) {

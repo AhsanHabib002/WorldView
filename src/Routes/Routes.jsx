@@ -42,7 +42,7 @@ import AllUser from "../Pages/Dashboard/AllUser/AllUser";
                 element:<DashHome></DashHome>
             },
             {
-                path:'/dashboard/alluser',
+                path:'alluser',
                 element:<AllUser></AllUser>
             },
         ]

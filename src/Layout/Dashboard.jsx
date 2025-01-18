@@ -9,7 +9,7 @@ const Dashboard = () => {
             <Navabar></Navabar>
             <div className='mt-10 flex max-w-[1440px] mx-auto px-4 md:px-[30px]'>
                 <div><DashNav></DashNav></div>
-                <div className='flex-1'><Outlet></Outlet></div>
+                <div className='flex-1 overflow-auto px-10'><Outlet></Outlet></div>
             </div>
         </div>
     );
