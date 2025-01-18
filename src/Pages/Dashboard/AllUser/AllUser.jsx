@@ -8,13 +8,34 @@ const AllUser = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get('/users');
       return res.data;
     },
   });
-  const handleRole = user =>{
-    axiosSecure.patch('')
-  }
+  const handleRole = (user) => {
+    Swal.fire({
+      title: "Are you sure you?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, make admin!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/${user._id}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: `${user.name} is admin Now`,
+              text: "Role Updated",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   const handleDeletUser = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -66,7 +87,7 @@ const AllUser = () => {
               {/* row 1 */}
               {users.map((user, index) => (
                 <>
-                  <tr key={user._id}>
+                  <tr key={index}>
                     <th>
                       <p>{index + 1}</p>
                     </th>
@@ -84,12 +105,16 @@ const AllUser = () => {
                     </td>
                     <td>{user.email}</td>
                     <td>
-                      <button
-                        onClick={() => handleRole(user)}
-                        className="btn bg-black btn-md text-white"
-                      >
-                        <FaUser></FaUser>
-                      </button>
+                      {user.role === "admin" ? (
+                        "Admin"
+                      ) : (
+                        <button
+                          onClick={() => handleRole(user)}
+                          className="btn bg-black btn-md text-white"
+                        >
+                          <FaUser></FaUser>
+                        </button>
+                      )}
                     </td>
                     <th>
                       <button

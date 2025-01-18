@@ -3,7 +3,7 @@ import Navabar from "../SharedComponents/Navabar";
 
 const Main = () => {
   const location = useLocation();
-  const noNavFoot = location.pathname.includes("login");
+  const noNavFoot = location.pathname.includes("login"&&"register");
   return (
     <div>
       {noNavFoot || <Navabar></Navabar>}
