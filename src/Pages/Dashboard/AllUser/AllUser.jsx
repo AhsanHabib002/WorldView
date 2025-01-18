@@ -1,18 +1,43 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaUser } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUser = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
-  const handleDeletUser = user =>{
-
+  const handleRole = user =>{
+    axiosSecure.patch('')
+  }
+  const handleDeletUser = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${user._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "This user has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
   };
 
   return (
@@ -34,14 +59,14 @@ const AllUser = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>User Role</th>
-                <th>Action</th>  
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {/* row 1 */}
-              {users.map((users, index) => (
+              {users.map((user, index) => (
                 <>
-                  <tr key={users._id}>
+                  <tr key={user._id}>
                     <th>
                       <p>{index + 1}</p>
                     </th>
@@ -49,23 +74,28 @@ const AllUser = () => {
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
-                            <img
-                              src={users.photo}
-                              alt="User Image"
-                            />
+                            <img src={user.photo} alt="User Image" />
                           </div>
                         </div>
                         <div>
-                          <div className="font-bold">{users.name}</div>
+                          <div className="font-bold">{user.name}</div>
                         </div>
                       </div>
                     </td>
+                    <td>{user.email}</td>
                     <td>
-                      {users.email}
+                      <button
+                        onClick={() => handleRole(user)}
+                        className="btn bg-black btn-md text-white"
+                      >
+                        <FaUser></FaUser>
+                      </button>
                     </td>
-                    <td>Purple</td>
                     <th>
-                      <button onClick={()=> handleDeletUser(user)} className="btn bg-red-500 btn-md text-white">
+                      <button
+                        onClick={() => handleDeletUser(user)}
+                        className="btn bg-red-500 btn-md text-white"
+                      >
                         <FaTrash></FaTrash>
                       </button>
                     </th>
