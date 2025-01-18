@@ -4,13 +4,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Login = () => {
+  const axiosPublic = useAxiosPublic();
   const { userLogin, setUser, googleLogin } = useAuth();
   const [show, setShow] = useState(false);
   const location = useLocation();
   const [error, setError] = useState("");
-  const from = location.state || "/";
+  const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
@@ -44,15 +46,23 @@ const Login = () => {
         }
       });
   };
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
     googleLogin()
       .then((result) => {
         const user = result.user;
         setUser(user);
-        setTimeout(() => {
-          navigate(from);
-        }, 2000);
-        Swal.fire("Logged In", "Your Login is Successful.", "success");
+        const userInfo = {
+          name: user?.displayName,
+          email: user?.email,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+            Swal.fire("Logged In", "Your Login is Successful.", "success");
+            setTimeout(() => {
+              navigate(from);
+            }, 2000);
+          
+        });
       })
       .catch((error) => {
         toast.error(`Error: ${error.message}`);

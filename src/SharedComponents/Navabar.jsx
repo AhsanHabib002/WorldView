@@ -70,7 +70,7 @@ const Navabar = () => {
               <NavLink to="/" className="text-[16px]">
                 Subscription
               </NavLink>
-              <NavLink to="/" className="text-[16px]">
+              <NavLink to="/dashboard" className="text-[16px]">
                 Dashboard
               </NavLink>
               <NavLink to="/" className="text-[16px]">
