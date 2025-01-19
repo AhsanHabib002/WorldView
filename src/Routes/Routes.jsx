@@ -8,6 +8,8 @@ import Dashboard from "../Layout/Dashboard";
 import DashHome from "../Pages/Dashboard/DashHome";
 import AllUser from "../Pages/Dashboard/AllUser/AllUser";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import Addpublisher from "../Pages/Dashboard/AddPublisher/Addpublisher";
 
 export const router = createBrowserRouter([
   {
@@ -35,9 +37,9 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <PrivateRoute>
+      <AdminRoute>
         <Dashboard></Dashboard>
-      </PrivateRoute>
+      </AdminRoute>
     ),
     children: [
       {
@@ -47,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "alluser",
         element: <AllUser></AllUser>,
+      },
+      {
+        path: "addpublisher",
+        element:<Addpublisher></Addpublisher> ,
       },
     ],
   },
