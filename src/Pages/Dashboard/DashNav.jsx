@@ -2,8 +2,10 @@ import React from "react";
 import { FaHome, FaUser } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import useAdmin from "../../Hooks/useAdmin";
 
 const DashNav = () => {
+  const [isAdmin] = useAdmin();
   return (
     <div className="mr-[5px]">
       <div className="drawer lg:drawer-open rounded-lg overflow-hidden">
@@ -30,15 +32,17 @@ const DashNav = () => {
                 <FaHome></FaHome> Admin Home
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                className="flex gap-2 text-[16px] m-3"
-                to="/dashboard/alluser"
-              >
-                <FaUserGroup></FaUserGroup>
-                All User
-              </NavLink>
-            </li>
+            {isAdmin && (
+              <li>
+                <NavLink
+                  className="flex gap-2 text-[16px] m-3"
+                  to="/dashboard/alluser"
+                >
+                  <FaUserGroup></FaUserGroup>
+                  All User
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </div>

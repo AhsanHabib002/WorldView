@@ -84,7 +84,7 @@ const Register = () => {
           photo: user?.photoURL
         };
         axiosPublic.post("/users", userInfo).then((res) => {
-          if (res.data.insertedId) {
+          if (res.data) {
             setTimeout(() => {
               navigate(from);
             }, 2000);

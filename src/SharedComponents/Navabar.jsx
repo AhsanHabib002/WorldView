@@ -1,8 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import useAdmin from "../Hooks/useAdmin";
 
 const Navabar = () => {
   const { user, logout } = useAuth();
+  const [isAdmin] = useAdmin();
+
   return (
     <>
       <div className=" bg-black text-white">
@@ -31,24 +34,32 @@ const Navabar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-black rounded-box z-[5] mt-3 w-52 p-2 shadow-md"
               >
                 <li>
-                  <a>Item 1</a>
+                  <NavLink to="/">Home</NavLink>
                 </li>
                 <li>
-                  <a>Parent</a>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
+                  <NavLink to="/">Add Articles</NavLink>
                 </li>
                 <li>
-                  <a>Item 3</a>
+                  <NavLink to="/">All Articles</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/">Subscription</NavLink>
+                </li>
+                {isAdmin && (
+                  <li>
+                    <NavLink to="/dashboard" className="text-[16px]">
+                      Dashboard
+                    </NavLink>
+                  </li>
+                )}
+                <li>
+                  <NavLink to="/">My Articles</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/">Premium Articles</NavLink>
                 </li>
               </ul>
             </div>
@@ -58,27 +69,31 @@ const Navabar = () => {
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 flex gap-4">
-              <NavLink to="/" className="text-[16px]">
-                Home
-              </NavLink>
-              <NavLink to="/" className="text-[16px]">
-                Add Articles
-              </NavLink>
-              <NavLink to="/" className="text-[16px]">
-                All Articles
-              </NavLink>
-              <NavLink to="/" className="text-[16px]">
-                Subscription
-              </NavLink>
-              <NavLink to="/dashboard" className="text-[16px]">
-                Dashboard
-              </NavLink>
-              <NavLink to="/" className="text-[16px]">
-                My Articles
-              </NavLink>
-              <NavLink to="/" className="text-[16px]">
-                Premium Articles
-              </NavLink>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/">Add Articles</NavLink>
+              </li>
+              <li>
+                <NavLink to="/">All Articles</NavLink>
+              </li>
+              <li>
+                <NavLink to="/">Subscription</NavLink>
+              </li>
+              {isAdmin && (
+                <li>
+                  <NavLink to="/dashboard" className="text-[16px]">
+                    Dashboard
+                  </NavLink>
+                </li>
+              )}
+              <li>
+                <NavLink to="/">My Articles</NavLink>
+              </li>
+              <li>
+                <NavLink to="/">Premium Articles</NavLink>
+              </li>
             </ul>
           </div>
           <div className="navbar-end  gap-4">
@@ -88,7 +103,11 @@ const Navabar = () => {
                   <Link>
                     <button className="btn btn-ghost btn-circle">
                       <div className="w-10 rounded-full">
-                        <img className="w-10 h-10 rounded-full cursor-pointer" alt={user.displayName} src={user.photoURL} />
+                        <img
+                          className="w-10 h-10 rounded-full cursor-pointer"
+                          alt={user.displayName}
+                          src={user.photoURL}
+                        />
                       </div>
                     </button>
                   </Link>

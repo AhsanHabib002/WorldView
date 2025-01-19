@@ -46,8 +46,31 @@ const Login = () => {
         }
       });
   };
-  const handleGoogleLogin = (e) => {
-    e.preventDefault();
+  //   const handleGoogleLogin = (e) => {
+  //     e.preventDefault();
+  //     googleLogin()
+  //       .then((result) => {
+  //         const user = result.user;
+  //         setUser(user);
+  //         const userInfo = {
+  //           name: user?.displayName,
+  //           email: user?.email,
+  //           photo: user?.photoURL
+  //         };
+  //         axiosPublic.post("/users", userInfo).then((res) => {
+  //             Swal.fire("Logged In", "Your Login is Successful.", "success");
+  //             setTimeout(() => {
+  //               navigate(from);
+  //             }, 2000);
+
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         toast.error(`Error: ${error.message}`);
+  //       });
+  //   };
+
+  const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
@@ -55,21 +78,21 @@ const Login = () => {
         const userInfo = {
           name: user?.displayName,
           email: user?.email,
-          photo: user?.photoURL
+          photo: user?.photoURL,
         };
         axiosPublic.post("/users", userInfo).then((res) => {
-            Swal.fire("Logged In", "Your Login is Successful.", "success");
+          if (res.data) {
             setTimeout(() => {
               navigate(from);
             }, 2000);
-          
+            Swal.fire("Logged In", "Your Login is Successful.", "success");
+          }
         });
       })
       .catch((error) => {
         toast.error(`Error: ${error.message}`);
       });
   };
-
   return (
     <>
       <div className="max-w-[90rem] mx-auto">
