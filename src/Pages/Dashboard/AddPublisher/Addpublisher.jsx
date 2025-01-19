@@ -12,14 +12,12 @@ const Addpublisher = () => {
   const axiosPublic=useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const onSubmit = async (data) => {
-    console.log(data)
     const imageFile = {image: data.publisher_logo[0]};
     const res = await axiosPublic.post(image_hosting_api, imageFile,{
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     });
-    console.log(res.data)
     if(res.data.success){
         const publisher = {
             publisher_name: data.publisher_name,
@@ -34,6 +32,7 @@ const Addpublisher = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
+              
         }
     }
     

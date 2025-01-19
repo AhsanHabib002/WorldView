@@ -40,10 +40,10 @@ const Navabar = () => {
                   <NavLink to="/">Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">Add Articles</NavLink>
+                  <NavLink to="/addarticles">Add Articles</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">All Articles</NavLink>
+                  <NavLink to="/articles">All Articles</NavLink>
                 </li>
                 <li>
                   <NavLink to="/">Subscription</NavLink>
@@ -73,10 +73,10 @@ const Navabar = () => {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/">Add Articles</NavLink>
+                <NavLink to="/addarticles">Add Articles</NavLink>
               </li>
               <li>
-                <NavLink to="/">All Articles</NavLink>
+                <NavLink to="/articles">All Articles</NavLink>
               </li>
               <li>
                 <NavLink to="/">Subscription</NavLink>

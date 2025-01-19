@@ -10,6 +10,8 @@ import AllUser from "../Pages/Dashboard/AllUser/AllUser";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import Addpublisher from "../Pages/Dashboard/AddPublisher/Addpublisher";
+import AllArticles from "../Pages/Articles/AllArticles";
+import AddArticle from "../Pages/Articles/AddArticle/AddArticle";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ export const router = createBrowserRouter([
       {
         path: "/articles/:id",
         element: <ArticleDetail></ArticleDetail>,
+      },
+      {
+        path: "/articles",
+        element: <AllArticles></AllArticles>,
+      },
+      {
+        path: "/addarticles",
+        element: <AddArticle></AddArticle>,
       },
       {
         path: "login",
