@@ -53,7 +53,7 @@ const AllArticles = () => {
     });
   };
   const publisherOptions = publishers.map((publisher) => ({
-    value: publisher._id,
+    value: publisher.publisher_name,
     label: publisher.publisher_name,
   }));
   const tagOptions = [
@@ -80,7 +80,7 @@ const AllArticles = () => {
     <div>
       <div className="mt-10">
         <h2 className="text-xl md:text-3xl  font-bold text-center">
-          All News Around the World: {articles.length}
+          All News Around the World:
         </h2>
       </div>
       {/* Filter */}

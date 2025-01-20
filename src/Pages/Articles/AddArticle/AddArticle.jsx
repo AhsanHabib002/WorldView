@@ -5,11 +5,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import Select from "react-select";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddArticle = () => {
+    const{user}=useAuth();
   const { register, handleSubmit, reset } = useForm();
   const [publishers, setPublishers] = useState([]);
   const [tags, setTags] = useState([]);
@@ -66,6 +68,7 @@ const AddArticle = () => {
         description: data.description,
         status: 'pending',
         views: 0,
+        email: user.email,
       };
       const addarticles = await axiosSecure.post("/articles", newArticle);
       if (addarticles.data.insertedId) {

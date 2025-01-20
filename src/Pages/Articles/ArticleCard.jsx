@@ -2,6 +2,9 @@ import { FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ArticleCard = ({ article, user }) => {
+    if (article.status !== "approved") {
+        return null;
+      }
   const isPremium = article.subscription === "premium";
   const hasPremiumAccess = user?.isPremium;
   return (

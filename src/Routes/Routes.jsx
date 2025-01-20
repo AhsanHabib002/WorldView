@@ -12,6 +12,7 @@ import AdminRoute from "./AdminRoute";
 import Addpublisher from "../Pages/Dashboard/AddPublisher/Addpublisher";
 import AllArticles from "../Pages/Articles/AllArticles";
 import AddArticle from "../Pages/Articles/AddArticle/AddArticle";
+import MyArticle from "../Pages/Articles/MyArticle/MyArticle";
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +33,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/addarticles",
-        element: <AddArticle></AddArticle>,
+        element: (
+          <PrivateRoute>
+            <AddArticle></AddArticle>,
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myarticles",
+        element: (
+          <PrivateRoute>
+            <MyArticle></MyArticle>
+          </PrivateRoute>
+        ),
       },
       {
         path: "login",
@@ -62,7 +75,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "addpublisher",
-        element:<Addpublisher></Addpublisher> ,
+        element: <Addpublisher></Addpublisher>,
       },
     ],
   },

@@ -5,8 +5,8 @@ import Swal from "sweetalert2";
 
 const AllUser = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
+  const { data: user = [], refetch } = useQuery({
+    queryKey: ["user"],
     queryFn: async () => {
       const res = await axiosSecure.get('/users');
       return res.data;
@@ -65,7 +65,7 @@ const AllUser = () => {
     <div>
       <div>
         <h2 className="text-xl md:text-3xl  font-bold text-center">
-          Manage All Users: {users.length}
+          Manage All Users: {user.length}
         </h2>
       </div>
       <div className="mt-20">
@@ -85,7 +85,7 @@ const AllUser = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              {users.map((user, index) => (
+              {user.map((user, index) => (
                 <>
                   <tr key={index}>
                     <th>
