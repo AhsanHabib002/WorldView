@@ -69,6 +69,9 @@ const AddArticle = () => {
         status: 'pending',
         views: 0,
         email: user.email,
+        name: user.displayName,
+        author_photo: user.photoURL || "default-photo-url",
+      posted_date: new Date().toISOString(),
       };
       const addarticles = await axiosSecure.post("/articles", newArticle);
       if (addarticles.data.insertedId) {

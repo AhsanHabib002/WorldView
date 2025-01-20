@@ -120,13 +120,13 @@ const MyArticle = () => {
                 <td className="px-4 py-2">{index + 1}</td>
                 <td className="px-4 py-2">{article.title}</td>
                 <td className="px-4 py-2">
-                  <Link>
+                  <Link to={`/articles/${article._id}`}>
                     <button className="btn btn-info">Details</button>
                   </Link>
                 </td>
                 <td className="px-4 py-2">
                   {article.status === "approved" && <span>Approved</span>}
-                  {article.status === "decline" && (
+                  {article.status === "declined" && (
                     <div>
                       Declined{" "}
                       <button
@@ -223,7 +223,7 @@ const MyArticle = () => {
           <div className="flex flex-col gap-4">
             <p>{declineReason || "No reason My Mood"}</p>
             <button
-              className="btn btn-secondary"
+              className="btn bg-red-500"
               onClick={() => setIsDeclineModalOpen(false)}
             >
               Close

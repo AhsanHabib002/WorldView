@@ -1,5 +1,5 @@
 import React from "react";
-import { FaHome, FaPlus, FaUser } from "react-icons/fa";
+import { FaHome, FaPager, FaPlus, FaUser } from "react-icons/fa";
 import { FaUserGroup } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
@@ -49,6 +49,15 @@ const DashNav = () => {
               >
                 <FaPlus></FaPlus>
                 All Publisher
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="flex gap-2 text-[16px] m-3"
+                to="/dashboard/allarticles"
+              >
+                <FaPager></FaPager>
+                All Articles
               </NavLink>
             </li>
           </ul>

@@ -13,6 +13,8 @@ import Addpublisher from "../Pages/Dashboard/AddPublisher/Addpublisher";
 import AllArticles from "../Pages/Articles/AllArticles";
 import AddArticle from "../Pages/Articles/AddArticle/AddArticle";
 import MyArticle from "../Pages/Articles/MyArticle/MyArticle";
+import PremiumArticle from "../Pages/Articles/PremiumArticle/PremiumArticle";
+import AdminAllArticles from "../Pages/Dashboard/AllArticle/AdminAllArticles";
 
 export const router = createBrowserRouter([
   {
@@ -25,11 +27,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "/articles/:id",
-        element: <ArticleDetail></ArticleDetail>,
+        element: (
+          <PrivateRoute>
+            <ArticleDetail></ArticleDetail>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/articles",
         element: <AllArticles></AllArticles>,
+      },
+      {
+        path: "/premium",
+        element: (
+          <PrivateRoute>
+            <PremiumArticle></PremiumArticle>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addarticles",
@@ -76,6 +90,10 @@ export const router = createBrowserRouter([
       {
         path: "addpublisher",
         element: <Addpublisher></Addpublisher>,
+      },
+      {
+        path: "allarticles",
+        element: <AdminAllArticles></AdminAllArticles>,
       },
     ],
   },

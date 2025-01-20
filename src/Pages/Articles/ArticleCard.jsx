@@ -2,9 +2,9 @@ import { FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ArticleCard = ({ article, user }) => {
-    if (article.status !== "approved") {
-        return null;
-      }
+  if (article.status !== "approved") {
+    return null;
+  }
   const isPremium = article.subscription === "premium";
   const hasPremiumAccess = user?.isPremium;
   return (
@@ -32,6 +32,17 @@ const ArticleCard = ({ article, user }) => {
             </div>
           </h2>
           <p>{article.short_description}</p>
+          <p className=""><span className="font-bold">Publisher: </span>{article.publisher}</p>
+          <div>
+            Tags:
+            <div className="flex flex-wrap mt-2">
+              {article.tags.map((tag, index) => (
+                <div key={index} className="badge badge-outline mr-2">
+                  #{tag}
+                </div>
+              ))}{" "}
+            </div>
+          </div>
           <div className="card-actions justify-end">
             {isPremium ? (
               <div className="badge badge-outline">{article.subscription}</div>
