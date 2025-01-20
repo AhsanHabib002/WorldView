@@ -43,20 +43,20 @@ const ArticleCard = ({ article, user }) => {
           <div className="w-full">
             {isPremium ? (
               hasPremiumAccess ? (
-                <Link>
+                <Link to={`/articles/${article._id}`}>
                   <button className="btn bg-white text-black w-full">
                     Details
                   </button>
                 </Link>
               ) : (
-                <Link>
+                <Link to={`/articles/${article._id}`}>
                   <button className="btn btn-disabled w-full" disabled>
                     Details
                   </button>
                 </Link>
               )
             ) : (
-              <Link>
+              <Link to={`/articles/${article._id}`}>
                 <button className="btn bg-black text-white w-full">
                   Details
                 </button>

@@ -8,11 +8,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import usePublishers from "../../../Hooks/usePublishers";
 import Select from "react-select";
+import { FaEye } from "react-icons/fa";
 
 const MyArticle = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeclineModalOpen, setIsDeclineModalOpen] = useState(false);
   const [declineReason, setDeclineReason] = useState("");
   const [articles] = useArticles();
   const { publishers } = usePublishers();
@@ -64,7 +66,11 @@ const MyArticle = () => {
     });
     setIsModalOpen(true);
   };
-
+  // decline modal
+  const openDeclineModal = (article) => {
+    setDeclineReason(article.declineReason);
+    setIsDeclineModalOpen(true);
+  };
   const handleInput = (e) => {
     const { name, value } = e.target;
     setUpdated((prev) => ({ ...prev, [name]: value }));
@@ -77,13 +83,11 @@ const MyArticle = () => {
   };
   const handleUpdate = () => {
     axiosSecure.put(`/articles/${selectedArticle._id}`, updated).then((res) => {
-        
       if (res.data.modifiedCount > 0) {
         refetch();
 
-       
         setIsModalOpen(false);
-        
+
         Swal.fire({
           title: "Updated!",
           text: "Article has been updated successfully.",
@@ -97,55 +101,62 @@ const MyArticle = () => {
 
   return (
     <div>
-      My article: {myArticles.length}
-      <div>
-        <table className="table-auto w-full">
+      <h2 className="text-2xl my-4 font-bold">My article: {myArticles.length}</h2>
+      <div className="overflow-x-auto">
+        <table className="table-auto w-full table-zebra hover text-left">
           <thead>
             <tr>
-              <th>Serial No.</th>
-              <th>Title</th>
-              <th>Status</th>
-              <th>Is Premium</th>
-              <th>Actions</th>
+              <th className="px-4 py-2">#</th>
+              <th className="px-4 py-2">Title</th>
+              <th className="px-4 py-2">Detail</th>
+              <th className="px-4 py-2">Status</th>
+              <th className="px-4 py-2">Is Premium</th>
+              <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
             {myArticles.map((article, index) => (
-              <tr key={article._id}>
-                <td>{index + 1}</td>
-                <td>{article.title}</td>
-                <td>
+              <tr key={article._id} className="hover:bg-gray-100">
+                <td className="px-4 py-2">{index + 1}</td>
+                <td className="px-4 py-2">{article.title}</td>
+                <td className="px-4 py-2">
+                  <Link>
+                    <button className="btn btn-info">Details</button>
+                  </Link>
+                </td>
+                <td className="px-4 py-2">
                   {article.status === "approved" && <span>Approved</span>}
-                  {article.status === "declined" && (
+                  {article.status === "decline" && (
                     <div>
                       Declined{" "}
                       <button
-                        className="text-blue-500"
-                        onClick={() => hadnleDecline}
+                        className="btn bg-yellow-200"
+                        onClick={() => openDeclineModal(article)}
                       >
-                        Show Reason
+                        <FaEye></FaEye>
                       </button>
                     </div>
                   )}
                   {article.status === "pending" && <span>Pending</span>}
                 </td>
-                <td>{article.isPremium ? "Yes" : "No"}</td>
-                <td>
-                  <Link>
-                    <button className="btn btn-info">Details</button>
-                  </Link>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => openUpdateModal(article)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => deleteArticle(article)}
-                  >
-                    Delete
-                  </button>
+                <td className="px-4 py-2">
+                  {article.isPremium ? "Yes" : "No"}
+                </td>
+                <td className="px-4 py-2">
+                  <div className="flex gap-2">
+                    <button
+                      className="btn bg-black text-white"
+                      onClick={() => openUpdateModal(article)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="btn bg-red-500"
+                      onClick={() => deleteArticle(article)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -196,6 +207,24 @@ const MyArticle = () => {
             <button
               className="btn btn-secondary"
               onClick={() => setIsModalOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+
+        {/* decline */}
+        <Modal
+          isOpen={isDeclineModalOpen}
+          onRequestClose={() => setIsDeclineModalOpen(false)}
+          contentLabel="Decline Reason"
+        >
+          <h3 className="text-lg font-bold">Decline Reason</h3>
+          <div className="flex flex-col gap-4">
+            <p>{declineReason || "No reason My Mood"}</p>
+            <button
+              className="btn btn-secondary"
+              onClick={() => setIsDeclineModalOpen(false)}
             >
               Close
             </button>

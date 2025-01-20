@@ -86,8 +86,8 @@ const AllArticles = () => {
       {/* Filter */}
       <div className="my-6">
         <h3 className="text-xl font-medium">Filter Articles</h3>
-        <div className="flex gap-4">
-          <div className="w-1/3">
+        <div className="flex flex-col gap-4 md:flex-row">
+          <div className="md:w-1/3">
             <label className="input input-bordered flex items-center gap-2">
               <input
                 type="text"
@@ -111,7 +111,7 @@ const AllArticles = () => {
             </label>
           </div>
 
-          <div className="w-1/3">
+          <div className="md:w-1/3">
             <Select
               options={publisherOptions}
               onChange={handlePublishChnage}
@@ -120,7 +120,7 @@ const AllArticles = () => {
             />
           </div>
 
-          <div className="w-1/3">
+          <div className="md:w-1/3">
             <Select
               isMulti
               options={tagOptions}
