@@ -46,7 +46,7 @@ const Navabar = () => {
                   <NavLink to="/articles">All Articles</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">Subscription</NavLink>
+                  <NavLink to="/subscription">Subscription</NavLink>
                 </li>
                 {isAdmin && (
                   <li>
@@ -82,7 +82,7 @@ const Navabar = () => {
                 <NavLink to="/articles">All Articles</NavLink>
               </li>
               <li>
-                <NavLink to="/">Subscription</NavLink>
+                <NavLink to="/subscription">Subscription</NavLink>
               </li>
               {isAdmin && (
                 <li>
