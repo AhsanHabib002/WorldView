@@ -15,6 +15,7 @@ import AddArticle from "../Pages/Articles/AddArticle/AddArticle";
 import MyArticle from "../Pages/Articles/MyArticle/MyArticle";
 import PremiumArticle from "../Pages/Articles/PremiumArticle/PremiumArticle";
 import AdminAllArticles from "../Pages/Dashboard/AllArticle/AdminAllArticles";
+import MyProfile from "../Pages/MyProfile/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyArticle></MyArticle>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myprofile",
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
           </PrivateRoute>
         ),
       },

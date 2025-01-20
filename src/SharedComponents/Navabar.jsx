@@ -61,6 +61,9 @@ const Navabar = () => {
                 <li>
                   <NavLink to="/premium">Premium Articles</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/myprofile">Profile</NavLink>
+                </li>
               </ul>
             </div>
             <a className="font-cinzel font-extrabold text-[3vw] lg:text-[1.2vw]">
@@ -93,6 +96,9 @@ const Navabar = () => {
               </li>
               <li>
                 <NavLink to="/premium">Premium Articles</NavLink>
+              </li>
+              <li>
+                <NavLink to="/myprofile">Profile</NavLink>
               </li>
             </ul>
           </div>
