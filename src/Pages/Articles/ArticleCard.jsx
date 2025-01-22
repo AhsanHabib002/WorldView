@@ -6,7 +6,8 @@ const ArticleCard = ({ article, user }) => {
     return null;
   }
   const isPremium = article.subscription === "premium";
-  const hasPremiumAccess = user?.isPremium;
+  const hasPremiumAccess = user?.premiumTaken && user.premiumTaken !== null;
+  ;
   return (
     <div>
       <div
@@ -60,11 +61,10 @@ const ArticleCard = ({ article, user }) => {
                   </button>
                 </Link>
               ) : (
-                <Link to={`/articles/${article._id}`}>
+                
                   <button className="btn btn-disabled w-full" disabled>
                     Details
                   </button>
-                </Link>
               )
             ) : (
               <Link to={`/articles/${article._id}`}>

@@ -1,11 +1,12 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckoutForm = () => {
-    const {user}=useAuth();
+  const { user } = useAuth();
   const stripe = useStripe();
   const navigate = useNavigate();
   const elements = useElements();
@@ -22,7 +23,7 @@ const CheckoutForm = () => {
           });
           setClientSecret(response.data.clientSecret);
         } catch (error) {
-          console.error("Error initializing payment:", error);
+ 
           alert("Failed to initialize payment. Please try again.");
         }
       };
@@ -39,40 +40,51 @@ const CheckoutForm = () => {
       });
 
       if (response.data.message) {
-        alert("Subscription activated!");
-        navigate("/");
+        Swal.fire({
+          icon: "success",
+          title: "Subscription Activated!",
+          text: "You now have access to premium features.",
+          confirmButtonText: "OK",
+        }).then(() => {
+          navigate("/");
+        });
       }
     } catch (error) {
-      console.error("Error updating subscription:", error);
-      alert("Failed to update subscription.");
+      
+      Swal.fire({
+        icon: "error",
+        title: "Subscription Failed",
+        text: "There was an issue updating your subscription. Please try again.",
+        confirmButtonText: "OK",
+      });
     }
   };
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!stripe || !elements || !clientSecret) {
       return;
     }
-  
+
     const card = elements.getElement(CardElement);
     if (card === null) {
       return;
     }
-  
-    // Confirm the payment using the clientSecret
-    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card,
-      },
-    });
-  
+
+    const { error, paymentIntent } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: {
+          card,
+        },
+      }
+    );
+
     if (error) {
-      console.error("Payment failed:", error.message);
       alert("Payment failed: " + error.message);
       return;
     }
-  
+
     if (paymentIntent.status === "succeeded") {
       alert("Payment successful!");
       await handleSubscriptionUpdate();

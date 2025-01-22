@@ -1,10 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import useAdmin from "../Hooks/useAdmin";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import usePremiumUser from "../Hooks/usePremiumUser";
 
 const Navabar = () => {
   const { user, logout } = useAuth();
   const [isAdmin] = useAdmin();
+  const { userPremium, isLoading } = usePremiumUser();
+  const isPremium = userPremium?.isPremium;
 
   return (
     <>
@@ -40,14 +45,31 @@ const Navabar = () => {
                   <NavLink to="/">Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/addarticles">Add Articles</NavLink>
-                </li>
-                <li>
                   <NavLink to="/articles">All Articles</NavLink>
                 </li>
-                <li>
-                  <NavLink to="/subscription">Subscription</NavLink>
-                </li>
+                {user && (
+                  <>
+                    <li>
+                      <NavLink to="/addarticles">Add Articles</NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink to="/subscription">Subscription</NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/myarticles">My Articles</NavLink>
+                    </li>
+                    {isPremium  && (
+                    <li>
+                      <NavLink to="/premium">Premium Articles</NavLink>
+                    </li>
+                  )}
+                    <li>
+                      <NavLink to="/myprofile">Profile</NavLink>
+                    </li>
+                  </>
+                )}
+
                 {isAdmin && (
                   <li>
                     <NavLink to="/dashboard" className="text-[16px]">
@@ -55,15 +77,6 @@ const Navabar = () => {
                     </NavLink>
                   </li>
                 )}
-                <li>
-                  <NavLink to="/myarticles">My Articles</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/premium">Premium Articles</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/myprofile">Profile</NavLink>
-                </li>
               </ul>
             </div>
             <a className="font-cinzel font-extrabold text-[3vw] lg:text-[1.2vw]">
@@ -76,14 +89,31 @@ const Navabar = () => {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/addarticles">Add Articles</NavLink>
-              </li>
-              <li>
                 <NavLink to="/articles">All Articles</NavLink>
               </li>
-              <li>
-                <NavLink to="/subscription">Subscription</NavLink>
-              </li>
+              {user && (
+                <>
+                  <li>
+                    <NavLink to="/addarticles">Add Articles</NavLink>
+                  </li>
+
+                  <li>
+                    <NavLink to="/subscription">Subscription</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/myarticles">My Articles</NavLink>
+                  </li>
+                  {isPremium  && (
+                    <li>
+                      <NavLink to="/premium">Premium Articles</NavLink>
+                    </li>
+                  )}
+                  <li>
+                    <NavLink to="/myprofile">Profile</NavLink>
+                  </li>
+                </>
+              )}
+
               {isAdmin && (
                 <li>
                   <NavLink to="/dashboard" className="text-[16px]">
@@ -91,15 +121,6 @@ const Navabar = () => {
                   </NavLink>
                 </li>
               )}
-              <li>
-                <NavLink to="/myarticles">My Articles</NavLink>
-              </li>
-              <li>
-                <NavLink to="/premium">Premium Articles</NavLink>
-              </li>
-              <li>
-                <NavLink to="/myprofile">Profile</NavLink>
-              </li>
             </ul>
           </div>
           <div className="navbar-end  gap-4">

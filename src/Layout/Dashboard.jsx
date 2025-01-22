@@ -2,6 +2,7 @@ import React from 'react';
 import Navabar from '../SharedComponents/Navabar';
 import { Outlet } from 'react-router-dom';
 import DashNav from '../Pages/Dashboard/DashNav';
+import Footer from '../SharedComponents/Footer';
 
 const Dashboard = () => {
     return (
@@ -11,6 +12,7 @@ const Dashboard = () => {
                 <div><DashNav></DashNav></div>
                 <div className='flex-1 overflow-auto px-10'><Outlet></Outlet></div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

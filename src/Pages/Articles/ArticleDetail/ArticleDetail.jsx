@@ -2,29 +2,24 @@ import { useParams } from "react-router-dom";
 
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ArticleDetail = () => {
   const { id } = useParams();
+  const [viewsUpdated, setViewsUpdated] = useState(false);
 
   const axiosSecure = useAxiosSecure();
   const { data, isLoading, error } = useQuery({
     queryKey: ["articleDetail", id],
     queryFn: async () => {
+      if (!viewsUpdated && id) {
+        await axiosSecure.patch(`/articles/${id}/updateviews`);
+        setViewsUpdated(true); // Ensure it is updated only once
+      }
       const res = await axiosSecure.get(`/articles/${id}`);
       return res.data;
     },
   });
-
-  useEffect(() => {
-    const ViewCount = async () => {
-      await axiosSecure.patch(`/articles/${id}/updateviews`);
-    };
-
-    if (id) {
-      ViewCount();
-    }
-  }, [id, axiosSecure]);
 
   if (isLoading)
     return <span className="loading loading-spinner loading-lg"></span>;

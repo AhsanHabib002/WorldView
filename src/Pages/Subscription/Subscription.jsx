@@ -9,7 +9,7 @@ const Subscription = () => {
   const [subscriptionPeriod, setSubscription] = useState("");
   const [price, setPrice] = useState(0);
   const subscriptionOptions = [
-    { label: "1 Minute", value: 5, price: 1 },
+    { label: "1 Minute", value: 1, price: 5 },
     { label: "5 Days", value: 5 * 24 * 60, price: 50 },
     { label: "10 Days", value: 10 * 24 * 60, price: 150 },
   ];
@@ -53,8 +53,8 @@ const Subscription = () => {
             <option value="" disabled>
               Select a subscription period
             </option>
-            {subscriptionOptions.map((option,index) => (
-              <option key={index} value={option.value}>
+            {subscriptionOptions.map((option) => (
+              <option key={option.value} value={option.value}>
                 {option.label} - ${option.price}
               </option>
             ))}

@@ -1,7 +1,6 @@
 import useArticles from "../../Hooks/useArticles";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -11,7 +10,9 @@ import { Pagination } from "swiper/modules";
 import { FaRegEye } from "react-icons/fa";
 
 const Trending = () => {
-  const [articles] = useArticles();
+    const [articles] = useArticles();
+
+
   const topViewedArticles = articles
     .sort((a, b) => b.views - a.views)
     .slice(0, 6);
@@ -72,7 +73,6 @@ const Trending = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-     
     </div>
   );
 };

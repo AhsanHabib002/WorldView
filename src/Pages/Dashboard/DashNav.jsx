@@ -8,7 +8,7 @@ const DashNav = () => {
   const [isAdmin] = useAdmin();
   return (
     <div className="mr-[5px]">
-      <div className="drawer lg:drawer-open rounded-lg overflow-hidden">
+      <div className="drawer z-10 lg:drawer-open rounded-lg overflow-hidden">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}

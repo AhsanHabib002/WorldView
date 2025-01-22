@@ -43,7 +43,6 @@ const MyProfile = () => {
         throw new Error("Failed to update profile in the database.");
       }
     } catch (error) {
-      console.error(error);
 
       Swal.fire({
         icon: "error",
