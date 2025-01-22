@@ -18,11 +18,13 @@ import AdminAllArticles from "../Pages/Dashboard/AllArticle/AdminAllArticles";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import Subscription from "../Pages/Subscription/Subscription";
 import Payment from "../Pages/Subscription/Payment";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -105,6 +107,7 @@ export const router = createBrowserRouter([
         <Dashboard></Dashboard>
       </AdminRoute>
     ),
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard",

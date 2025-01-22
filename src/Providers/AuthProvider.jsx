@@ -39,26 +39,24 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, updateData);
   };
 
-  
   const googleLogin = () => {
     return signInWithPopup(auth, googleProvider);
   };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
       setLoading(true);
-      if(currentUser){
-        const userInfo = {email: currentUser.email};
-        axiosPublic.post('/jwt', userInfo)
-        .then(res =>{
-            if (res.data.token){
-                localStorage.setItem('access-token', res.data.token);
-            }
-        })
-      }
-      else{
-        localStorage.removeItem('access-token');
+
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+          setUser(currentUser);
+        });
+      } else {
+        localStorage.removeItem("access-token");
         setUser(null);
       }
       setLoading(false);

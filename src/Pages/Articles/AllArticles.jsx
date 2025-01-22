@@ -26,10 +26,10 @@ const AllArticles = () => {
 
   const axiosSecure = useAxiosSecure();
   const { data: users } = useQuery({
-    queryKey: ["users",],
+    queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/${user.email}`);
-      return res.users;
+      return res.data;
     },
   });
 
@@ -141,7 +141,7 @@ const AllArticles = () => {
             <ArticleCard
               key={article._id}
               article={article}
-              user={user}
+              user={users}
             ></ArticleCard>
           ))}
         </div>
