@@ -4,12 +4,28 @@ import useAdmin from "../Hooks/useAdmin";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import usePremiumUser from "../Hooks/usePremiumUser";
+import { useEffect, useState } from "react";
 
 const Navabar = () => {
   const { user, logout } = useAuth();
   const [isAdmin] = useAdmin();
   const { userPremium, isLoading } = usePremiumUser();
   const isPremium = userPremium?.isPremium;
+
+  // dark
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light-theme"
+  );
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  const togglebutton = () => {
+    const newTheme = theme === "light-theme" ? "dark-theme" : "light-theme";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
 
   return (
     <>
@@ -48,8 +64,14 @@ const Navabar = () => {
                   <NavLink to="/articles">All Articles</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/subscription">Subscription</NavLink>
-                  </li>
+                  <NavLink to="/subscription">Subscription</NavLink>
+                </li>
+                <button
+                  onClick={togglebutton}
+                  className=" theme-toggle-btn font-medium mx-3"
+                >
+                  {theme === "light-theme" ? "Dark" : "Light"}
+                </button>
                 {user && (
                   <>
                     <li>
@@ -58,19 +80,19 @@ const Navabar = () => {
                     <li>
                       <NavLink to="/myarticles">My Articles</NavLink>
                     </li>
-                    {isPremium  && (
-                    <li>
-                      <NavLink to="/premium">Premium Articles</NavLink>
-                    </li>
-                  )}
+                    {isPremium && (
+                      <li>
+                        <NavLink to="/premium">Premium Articles</NavLink>
+                      </li>
+                    )}
                     {/* <li>
                       <NavLink to="/myprofile">Profile</NavLink>
                     </li> */}
                     <li>
-                    <NavLink to="/dashboard" className="text-[16px]">
-                      Dashboard
-                    </NavLink>
-                  </li>
+                      <NavLink to="/dashboard" className="text-[16px]">
+                        Dashboard
+                      </NavLink>
+                    </li>
                   </>
                 )}
 
@@ -96,19 +118,24 @@ const Navabar = () => {
                 <NavLink to="/articles">All Articles</NavLink>
               </li>
               <li>
-                    <NavLink to="/subscription">Subscription</NavLink>
-                  </li>
+                <NavLink to="/subscription">Subscription</NavLink>
+              </li>
+              <button
+                onClick={togglebutton}
+                className=" theme-toggle-btn font-medium mx-3"
+              >
+                {theme === "light-theme" ? "Dark" : "Light"}
+              </button>
               {user && (
                 <>
                   <li>
                     <NavLink to="/addarticles">Add Articles</NavLink>
                   </li>
 
-                  
                   <li>
                     <NavLink to="/myarticles">My Articles</NavLink>
                   </li>
-                  {isPremium  && (
+                  {isPremium && (
                     <li>
                       <NavLink to="/premium">Premium Articles</NavLink>
                     </li>
@@ -117,10 +144,10 @@ const Navabar = () => {
                     <NavLink to="/myprofile">Profile</NavLink>
                   </li> */}
                   <li>
-                  <NavLink to="/dashboard" className="text-[16px]">
-                    Dashboard
-                  </NavLink>
-                </li>
+                    <NavLink to="/dashboard" className="text-[16px]">
+                      Dashboard
+                    </NavLink>
+                  </li>
                 </>
               )}
 
