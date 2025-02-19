@@ -13,7 +13,7 @@ const Navabar = () => {
 
   return (
     <>
-      <div className=" bg-black text-white">
+      <div className=" bg-black text-white sticky top-0 z-50">
         <div className="navbar max-w-[1440px] mx-auto px-4 md:px-[30px]">
           <div className="navbar-start">
             <div className="dropdown">
