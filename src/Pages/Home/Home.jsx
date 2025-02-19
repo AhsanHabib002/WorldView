@@ -242,7 +242,7 @@ const Home = () => {
       </div>
 
       {/* modal */}
-      {showModal && (
+      {/* {showModal && (
         <div className="z-10 fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white relative p-6 rounded-lg shadow-lg">
             <button
@@ -264,7 +264,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

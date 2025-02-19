@@ -47,14 +47,13 @@ const Navabar = () => {
                 <li>
                   <NavLink to="/articles">All Articles</NavLink>
                 </li>
+                <li>
+                    <NavLink to="/subscription">Subscription</NavLink>
+                  </li>
                 {user && (
                   <>
                     <li>
                       <NavLink to="/addarticles">Add Articles</NavLink>
-                    </li>
-
-                    <li>
-                      <NavLink to="/subscription">Subscription</NavLink>
                     </li>
                     <li>
                       <NavLink to="/myarticles">My Articles</NavLink>
@@ -91,15 +90,16 @@ const Navabar = () => {
               <li>
                 <NavLink to="/articles">All Articles</NavLink>
               </li>
+              <li>
+                    <NavLink to="/subscription">Subscription</NavLink>
+                  </li>
               {user && (
                 <>
                   <li>
                     <NavLink to="/addarticles">Add Articles</NavLink>
                   </li>
 
-                  <li>
-                    <NavLink to="/subscription">Subscription</NavLink>
-                  </li>
+                  
                   <li>
                     <NavLink to="/myarticles">My Articles</NavLink>
                   </li>
