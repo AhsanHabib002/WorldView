@@ -30,7 +30,7 @@ const Subscription = () => {
     });
   };
   return (
-    <div>
+    <div className="mt-[120px] md:mt-[160px]">
       <div className="my-10 bg-gradient-to-r from-purple-500 to-indigo-500 text-white p-6 rounded-lg shadow-lg mb-8">
         <h2 className="text-3xl text-center font-bold mb-4">
           Upgrade to Premium

@@ -9,7 +9,7 @@ const Payment = () => {
     const { state } = useLocation();
   
   return (
-    <div>
+    <div className="mt-[120px] md:mt-[160px]">
       <h2 className="my-10 text-2xl text-center font-bold mb-4">Payment</h2>
       <div>
         <Elements stripe={stripePromise}>

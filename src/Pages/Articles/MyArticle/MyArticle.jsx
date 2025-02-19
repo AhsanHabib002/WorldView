@@ -100,7 +100,7 @@ const MyArticle = () => {
   const hadnleDecline = () => {};
 
   return (
-    <div>
+    <div className="my-[120px] md:my-[160px]">
       <h2 className="text-2xl my-4 font-bold">My article: {myArticles.length}</h2>
       <div className="overflow-x-auto">
         <table className="table-auto w-full table-zebra hover text-left">

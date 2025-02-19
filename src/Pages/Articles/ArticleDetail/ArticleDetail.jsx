@@ -25,7 +25,7 @@ const ArticleDetail = () => {
     return <span className="loading loading-spinner loading-lg"></span>;
   if (error) return <div>Error: {error.message}</div>;
   return (
-    <div className="max-w-[850px] mx-auto">
+    <div className="max-w-[850px] mx-auto my-[120px] md:my-[160px]">
       <div className="my-10">
         <h2 className="text-4xl font-bold font-cinzel">{data.title}</h2>
       </div>

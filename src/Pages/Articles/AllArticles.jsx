@@ -77,8 +77,8 @@ const AllArticles = () => {
     { value: "Remote", label: "Remote" },
   ];
   return (
-    <div>
-      <div className="mt-10">
+    <div className="my-[120px] md:my-[160px]">
+      <div >
         <h2 className="text-xl md:text-3xl  font-bold text-center">
           All News Around the World:
         </h2>

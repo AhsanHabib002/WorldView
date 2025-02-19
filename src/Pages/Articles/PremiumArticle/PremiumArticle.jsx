@@ -20,7 +20,7 @@ const PremiumArticle = () => {
     return <span className="loading loading-spinner loading-lg"></span>;
   return (
     <div>
-      <div className="my-10">
+      <div className="my-[120px] md:my-[160px]">
         <h2 className="text-3xl font-bold">All Premium Articles: {premium.length}</h2>
       </div>
 
