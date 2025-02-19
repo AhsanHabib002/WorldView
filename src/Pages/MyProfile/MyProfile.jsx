@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 const MyProfile = () => {
   const { user, updateUserProfile, setUser } = useAuth();
   const [name, setName] = useState(user?.displayName || "");
+  const [email, setEmail] = useState(user?.email || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
   const [loading, setLoading] = useState(false);
 
@@ -59,6 +60,9 @@ const MyProfile = () => {
       <h2 className="text-2xl my-10">My Profile</h2>
       <div>
         <form onSubmit={handleSubmit} className="space-y-4">
+          <img className="rounded-full" src={photoURL} alt="" />
+
+          <p><span className="font-bold">Email:</span> {email}</p>
           <div>
             <label className="block text-sm font-medium">Name</label>
             <input
