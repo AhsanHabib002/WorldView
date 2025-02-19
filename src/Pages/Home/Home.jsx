@@ -12,6 +12,7 @@ import t1 from "../../assets/t1.jpg";
 import t2 from "../../assets/t2.jpg";
 import t3 from "../../assets/t3.jpg";
 import t4 from "../../assets/t4.jpg";
+import news from "../../assets/newsform.png";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -186,63 +187,124 @@ const Home = () => {
       </div>
       {/* Testimonial */}
       <div className="py-[60px] md:py-[90px]">
-          <div>
-            <h2 className="text-xl text-center mb-10 md:text-6xl font-cinzel font-bold">Community Thoughts</h2>
-            <div className="mt-[60px] md:mt-[90px] grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* testi-1 */}
-              <div className="bg-white shadow-md p-10">
-                <div className="flex flex-col md:flex-row gap-8">
-                  <img className="w-[120px] h-[120px] object-cover rounded-full shrink-0" src={t1} alt="" />
+        <div>
+          <h2 className="text-xl text-center mb-10 md:text-6xl font-cinzel font-bold">
+            Community Thoughts
+          </h2>
+          <div className="mt-[60px] md:mt-[90px] grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* testi-1 */}
+            <div className="bg-white shadow-md p-10">
+              <div className="flex flex-col md:flex-row gap-8">
+                <img
+                  className="w-[120px] h-[120px] object-cover rounded-full shrink-0"
+                  src={t1}
+                  alt=""
+                />
 
-                  <div className="flex flex-col gap-4">
-                    <h3 className="font-medium
-                     text-[26px]">Jone Babu</h3>
+                <div className="flex flex-col gap-4">
+                  <h3
+                    className="font-medium
+                     text-[26px]"
+                  >
+                    Jone Babu
+                  </h3>
 
-                     <p className="italic">"WORLDVIEW has become my go-to news website! The daily updates keep me informed about important global events in real time. I love the clean interface, and the ability to add publishers and articles makes it even more engaging. Highly recommended for anyone who values accurate and up-to-date news!"</p>
-                  </div>
+                  <p className="italic">
+                    "WORLDVIEW has become my go-to news website! The daily
+                    updates keep me informed about important global events in
+                    real time. I love the clean interface, and the ability to
+                    add publishers and articles makes it even more engaging.
+                    Highly recommended for anyone who values accurate and
+                    up-to-date news!"
+                  </p>
                 </div>
               </div>
-              {/* testi-2 */}
-              <div className="bg-white shadow-md p-10">
-                <div className="flex flex-col md:flex-row gap-8">
-                  <img className="w-[120px] h-[120px] object-cover rounded-full shrink-0" src={t2} alt="" />
+            </div>
+            {/* testi-2 */}
+            <div className="bg-white shadow-md p-10">
+              <div className="flex flex-col md:flex-row gap-8">
+                <img
+                  className="w-[120px] h-[120px] object-cover rounded-full shrink-0"
+                  src={t2}
+                  alt=""
+                />
 
-                  <div className="flex flex-col gap-4">
-                    <h3 className="font-medium
-                     text-[26px]">David S</h3>
+                <div className="flex flex-col gap-4">
+                  <h3
+                    className="font-medium
+                     text-[26px]"
+                  >
+                    David S
+                  </h3>
 
-                     <p className="italic">"Finally, a news platform that provides unbiased and well-researched news! WORLDVIEW does an excellent job of covering a wide range of topics, from politics to technology. The ability to add publishers and contribute articles makes it a truly interactive space for news lovers like me!"</p>
-                  </div>
+                  <p className="italic">
+                    "Finally, a news platform that provides unbiased and
+                    well-researched news! WORLDVIEW does an excellent job of
+                    covering a wide range of topics, from politics to
+                    technology. The ability to add publishers and contribute
+                    articles makes it a truly interactive space for news lovers
+                    like me!"
+                  </p>
                 </div>
               </div>
-              {/* testi-3 */}
-              <div className="bg-white shadow-md p-10">
-                <div className="flex flex-col md:flex-row gap-8">
-                  <img className="w-[120px] h-[120px] object-cover rounded-full shrink-0" src={t3} alt="" />
+            </div>
+            {/* testi-3 */}
+            <div className="bg-white shadow-md p-10">
+              <div className="flex flex-col md:flex-row gap-8">
+                <img
+                  className="w-[120px] h-[120px] object-cover rounded-full shrink-0"
+                  src={t3}
+                  alt=""
+                />
 
-                  <div className="flex flex-col gap-4">
-                    <h3 className="font-medium
-                     text-[26px]">Rahul Ambani</h3>
+                <div className="flex flex-col gap-4">
+                  <h3
+                    className="font-medium
+                     text-[26px]"
+                  >
+                    Rahul Ambani
+                  </h3>
 
-                     <p className="italic">"I appreciate the effort WORLDVIEW puts into keeping the world informed. The site's daily updates ensure that I never miss out on important news. The feature that allows users to add their own publishers and articles makes it a dynamic and community-driven platform!"</p>
-                  </div>
+                  <p className="italic">
+                    "I appreciate the effort WORLDVIEW puts into keeping the
+                    world informed. The site's daily updates ensure that I never
+                    miss out on important news. The feature that allows users to
+                    add their own publishers and articles makes it a dynamic and
+                    community-driven platform!"
+                  </p>
                 </div>
               </div>
-              {/* testi-4*/}
-              <div className="bg-white shadow-md p-10">
-                <div className="flex flex-col md:flex-row gap-8">
-                  <img className="w-[120px] h-[120px] object-cover rounded-full shrink-0" src={t4} alt="" />
+            </div>
+            {/* testi-4*/}
+            <div className="bg-white shadow-md p-10">
+              <div className="flex flex-col md:flex-row gap-8">
+                <img
+                  className="w-[120px] h-[120px] object-cover rounded-full shrink-0"
+                  src={t4}
+                  alt=""
+                />
 
-                  <div className="flex flex-col gap-4">
-                    <h3 className="font-medium
-                     text-[26px]">Kuddos Kamal</h3>
+                <div className="flex flex-col gap-4">
+                  <h3
+                    className="font-medium
+                     text-[26px]"
+                  >
+                    Kuddos Kamal
+                  </h3>
 
-                     <p className="italic">"WORLDVIEW is more than just a news website; it’s a platform where information flows freely and efficiently. The user-friendly interface, well-structured articles, and the ability to engage with different publishers make it stand out. It’s refreshing to see a news website that values both accuracy and accessibility!"</p>
-                  </div>
+                  <p className="italic">
+                    "WORLDVIEW is more than just a news website; it’s a platform
+                    where information flows freely and efficiently. The
+                    user-friendly interface, well-structured articles, and the
+                    ability to engage with different publishers make it stand
+                    out. It’s refreshing to see a news website that values both
+                    accuracy and accessibility!"
+                  </p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
       {/* Extra Sections */}
       <div className=" flex flex-col justify-center items-center gap-4 md:flex-row py-[60px] md:py-[90px]">
@@ -287,6 +349,62 @@ const Home = () => {
                   read the article{" "}
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Suggestion form */}
+      <div className="py-[60px] md:py-[90px]">
+        <div>
+          <h2 className="font-cinzel text-xl font-bold md:text-6xl">
+            Any Suggestion for World View?
+          </h2>
+        </div>
+        <div className="rounded-t-[45px] bg-[#F3F3F3] mt-[30px] md:mt-[90px] py-[30px] md:py-[60px] md:pl-[60px]">
+          <div className="flex flex-col md:flex-row justify-end">
+            {/* form Content */}
+            <div className="flex-1">
+              <form className="card-body">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Full name"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="email"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Message</span>
+                  </label>
+                  <textarea
+                    placeholder="Write your questions.."
+                    className="textarea textarea-bordered textarea-lg w-full"
+                  ></textarea>
+                </div>
+                <div className="form-control mt-6">
+                  <button className="btn bg-black text-white">Submit</button>
+                </div>
+              </form>
+            </div>
+            {/* form image */}
+            <div className="flex-1 flex justify-end">
+              <img className="max-h-[450px]" src={news} alt="" />
             </div>
           </div>
         </div>
