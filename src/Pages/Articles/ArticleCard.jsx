@@ -13,7 +13,7 @@ const ArticleCard = ({ article, user }) => {
   return (
     <div>
       <div
-        className={`card ${
+        className={`card h-[600px] ${
           isPremium
             ? "bg-yellow-500 max-w-96 shadow-xl"
             : "bg-base-100 max-w-96 shadow-xl"
@@ -43,7 +43,7 @@ const ArticleCard = ({ article, user }) => {
             Tags:
             <div className="flex flex-wrap mt-2">
               {article.tags.map((tag, index) => (
-                <div key={index} className="badge badge-outline mr-2">
+                <div key={index} className="badge badge-outline mr-2 mt-2">
                   #{tag}
                 </div>
               ))}{" "}
