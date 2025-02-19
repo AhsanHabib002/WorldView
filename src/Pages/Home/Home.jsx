@@ -8,6 +8,10 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useArticles from "../../Hooks/useArticles";
 import "./home.css";
 import { gsap } from "gsap";
+import t1 from "../../assets/t1.jpg";
+import t2 from "../../assets/t2.jpg";
+import t3 from "../../assets/t3.jpg";
+import t4 from "../../assets/t4.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -53,22 +57,22 @@ const Home = () => {
       backgroundSize: "300% 300%",
       backgroundPosition: "0% 0%",
       duration: 8,
-      backgroundPositionX: "300%", 
+      backgroundPositionX: "300%",
       ease: "linear",
       repeat: -1,
     });
   }, []);
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setShowModal(true);
-      }, 10000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowModal(true);
+    }, 10000);
 
-      return () => clearTimeout(timer);
-    }, []);
-    const handleCloseModal = () => {
-      setShowModal(false);
-    };
+    return () => clearTimeout(timer);
+  }, []);
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   if (!users || isLoading) {
     return <div>Loading...</div>;
   }
@@ -82,15 +86,15 @@ const Home = () => {
         </h1>
       </div>
       {/* trending Articles */}
-      <div>
+      <div className="pb-[90px]">
         <Trending></Trending>
       </div>
       {/* Publisher */}
-      <div className="my-20">
+      <div className="py-[60px] md:py-[90px]">
         <h2 className="text-xl mb-10 md:text-6xl font-bold text-center font-cinzel">
           All Publishers
         </h2>
-        <div className="grid grid-cols-3 gap-4 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4  mt-[60px] md:mt-[90px]">
           {publishers.map((publisher) => (
             <div key={publisher._id} className="card image-full shadow-xl">
               <figure className="w-full h-[150px] object-cover">
@@ -109,12 +113,13 @@ const Home = () => {
           ))}
         </div>
       </div>
+
       {/* Plan */}
-      <div className="my-8  p-6 rounded">
+      <div className="py-[60px] md:py-[90px]">
         <h2 className="text-xl font-cinzel mb-10 md:text-6xl font-bold text-center">
           Choose Your Plan
         </h2>
-        <div className="grid grid-cols-1 justify-center items-center md:grid-cols-2 gap-4 mt-4">
+        <div className="grid grid-cols-1 justify-center items-center md:grid-cols-2 gap-4 mt-[60px] md:mt-[90px]">
           <div className="card-body rounded-md bg-black text-white">
             <h2 className="card-title">Free Plan</h2>
             <p className="font-bold text-[18px]">$0</p>
@@ -132,7 +137,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="card-body bg-yellow-500 text-black">
+          <div className="card-body rounded-md bg-yellow-500 text-black">
             <h2 className="card-title">Premium Plan</h2>
             <p className="font-bold text-[18px]">$5-$100</p>
             <ul className="">
@@ -152,13 +157,13 @@ const Home = () => {
       </div>
 
       {/* Stats */}
-      <div className="my-10">
+      <div className="py-[60px] md:py-[90px]">
         <h2 className="text-xl text-center mb-10 md:text-6xl font-cinzel font-bold">
           Total User In worldView
         </h2>
 
         {/*  */}
-        <div className="bg-black text-white py-12 px-6 rounded-xl flex justify-around items-center">
+        <div className="bg-black text-white py-12 px-6 rounded-xl flex justify-around items-center mt-[60px] md:mt-[90px]">
           <div className="text-center mx-4">
             <h2 className="text-4xl font-bold ">
               <CountUp end={totalUserCount} duration={7.5} />
@@ -179,8 +184,68 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* Testimonial */}
+      <div className="py-[60px] md:py-[90px]">
+          <div>
+            <h2 className="text-xl text-center mb-10 md:text-6xl font-cinzel font-bold">Community Thoughts</h2>
+            <div className="mt-[60px] md:mt-[90px] grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* testi-1 */}
+              <div className="bg-white shadow-md p-10">
+                <div className="flex flex-col md:flex-row gap-8">
+                  <img className="w-[120px] h-[120px] object-cover rounded-full shrink-0" src={t1} alt="" />
+
+                  <div className="flex flex-col gap-4">
+                    <h3 className="font-medium
+                     text-[26px]">Jone Babu</h3>
+
+                     <p className="italic">"WORLDVIEW has become my go-to news website! The daily updates keep me informed about important global events in real time. I love the clean interface, and the ability to add publishers and articles makes it even more engaging. Highly recommended for anyone who values accurate and up-to-date news!"</p>
+                  </div>
+                </div>
+              </div>
+              {/* testi-2 */}
+              <div className="bg-white shadow-md p-10">
+                <div className="flex flex-col md:flex-row gap-8">
+                  <img className="w-[120px] h-[120px] object-cover rounded-full shrink-0" src={t2} alt="" />
+
+                  <div className="flex flex-col gap-4">
+                    <h3 className="font-medium
+                     text-[26px]">David S</h3>
+
+                     <p className="italic">"Finally, a news platform that provides unbiased and well-researched news! WORLDVIEW does an excellent job of covering a wide range of topics, from politics to technology. The ability to add publishers and contribute articles makes it a truly interactive space for news lovers like me!"</p>
+                  </div>
+                </div>
+              </div>
+              {/* testi-3 */}
+              <div className="bg-white shadow-md p-10">
+                <div className="flex flex-col md:flex-row gap-8">
+                  <img className="w-[120px] h-[120px] object-cover rounded-full shrink-0" src={t3} alt="" />
+
+                  <div className="flex flex-col gap-4">
+                    <h3 className="font-medium
+                     text-[26px]">Rahul Ambani</h3>
+
+                     <p className="italic">"I appreciate the effort WORLDVIEW puts into keeping the world informed. The site's daily updates ensure that I never miss out on important news. The feature that allows users to add their own publishers and articles makes it a dynamic and community-driven platform!"</p>
+                  </div>
+                </div>
+              </div>
+              {/* testi-4*/}
+              <div className="bg-white shadow-md p-10">
+                <div className="flex flex-col md:flex-row gap-8">
+                  <img className="w-[120px] h-[120px] object-cover rounded-full shrink-0" src={t4} alt="" />
+
+                  <div className="flex flex-col gap-4">
+                    <h3 className="font-medium
+                     text-[26px]">Kuddos Kamal</h3>
+
+                     <p className="italic">"WORLDVIEW is more than just a news website; it’s a platform where information flows freely and efficiently. The user-friendly interface, well-structured articles, and the ability to engage with different publishers make it stand out. It’s refreshing to see a news website that values both accuracy and accessibility!"</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
       {/* Extra Sections */}
-      <div className=" flex flex-col justify-center items-center gap-4 md:flex-row">
+      <div className=" flex flex-col justify-center items-center gap-4 md:flex-row py-[60px] md:py-[90px]">
         <div className="flex-1 p-10 items-center ">
           <h2 className="text-xl md:text-5xl lg:text-8xl font-cinzel font-bold">
             Why Read WorldView Daily?
@@ -229,7 +294,7 @@ const Home = () => {
 
       <div
         ref={gradientRef}
-        className="py-8 px-6 rounded-lg shadow-lg text-center"
+        className=" px-6 rounded-lg shadow-lg text-center py-[60px] md:py-[90px] my-[60px] md:my-[90px]"
       >
         <h2 className="text-3xl font-bold text-white mb-4">
           Want to be a subscriber?

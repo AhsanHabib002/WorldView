@@ -10,8 +10,7 @@ import { Pagination } from "swiper/modules";
 import { FaRegEye } from "react-icons/fa";
 
 const Trending = () => {
-    const [articles] = useArticles();
-
+  const [articles] = useArticles();
 
   const topViewedArticles = articles
     .sort((a, b) => b.views - a.views)
@@ -44,7 +43,7 @@ const Trending = () => {
         {topViewedArticles.map((article) => (
           <SwiperSlide key={article._id}>
             <div>
-              <div className="card rounded-none border-[1px] border-black bg-base-100 max-w-96 ">
+              <div className="card rounded-none border-[1px] border-black bg-base-100 max-w-96 h-[480px]">
                 <figure>
                   <img
                     className="h-[250px] w-full object-cover"
@@ -52,13 +51,13 @@ const Trending = () => {
                   />
                 </figure>
                 <div className="p-4 flex flex-col gap-4">
-                  <h2 className="card-title font-cinzel">
-                    {article.title}
+                  <div className=" flex gap-2 justify-end">
+                    <h2 className="card-title font-cinzel w-full h-[60px]">{article.title}</h2>
                     <div className="badge">
                       <FaRegEye />
                       {article.views}
                     </div>
-                  </h2>
+                  </div>
                   <p>{article.short_description}</p>
                   <div className="card-actions justify-end">
                     {article.tags.map((tag, index) => (
