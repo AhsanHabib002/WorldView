@@ -87,8 +87,8 @@ const AddArticle = () => {
     }
   };
   return (
-    <div>
-      <div className="my-[120px] md:my-[160px]">
+    <div className="my-[120px] md:my-[160px]">
+      <div >
         <h2 className="text-xl md:text-3xl  font-bold text-center">
           Add New Article
         </h2>
