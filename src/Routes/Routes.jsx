@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -102,11 +102,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: (
-      <AdminRoute>
-        <Dashboard></Dashboard>
-      </AdminRoute>
-    ),
+    element: <Dashboard></Dashboard>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {

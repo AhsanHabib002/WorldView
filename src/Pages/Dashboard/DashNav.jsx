@@ -27,52 +27,48 @@ const DashNav = () => {
           ></label>
           <ul className="menu bg-black text-white min-h-full w-64 p-4">
             {/* Sidebar content here */}
-            
-              <>
-               <li>
+            <li>
               <NavLink className="flex gap-2 text-[16px] m-3" to="/dashboard">
-                <FaHome></FaHome> Admin Home
+                <FaHome></FaHome> Dashboard Home
               </NavLink>
             </li>
-
-            <li>
-              <NavLink
-                className="flex gap-2 text-[16px] m-3"
-                to="/dashboard/alluser"
-              >
-                <FaUserGroup></FaUserGroup>
-                All User
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="flex gap-2 text-[16px] m-3"
-                to="/dashboard/addpublisher"
-              >
-                <FaPlus></FaPlus>
-                All Publisher
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="flex gap-2 text-[16px] m-3"
-                to="/dashboard/allarticles"
-              >
-                <FaPager></FaPager>
-                All Articles
-              </NavLink>
-            </li>
+            {isAdmin && (
+              <>
+                <li>
+                  <NavLink
+                    className="flex gap-2 text-[16px] m-3"
+                    to="/dashboard/alluser"
+                  >
+                    <FaUserGroup></FaUserGroup>
+                    All User
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="flex gap-2 text-[16px] m-3"
+                    to="/dashboard/addpublisher"
+                  >
+                    <FaPlus></FaPlus>
+                    All Publisher
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="flex gap-2 text-[16px] m-3"
+                    to="/dashboard/allarticles"
+                  >
+                    <FaPager></FaPager>
+                    All Articles
+                  </NavLink>
+                </li>
               </>
+            )}
             <li>
-              <NavLink
-                className="flex gap-2 text-[16px] m-3"
-                to="/myprofile"
-              >
+              <NavLink className="flex gap-2 text-[16px] m-3" to="/myprofile">
                 <FaUser></FaUser>
-                Admin Profile
+                Profile
               </NavLink>
             </li>
-           
           </ul>
         </div>
       </div>

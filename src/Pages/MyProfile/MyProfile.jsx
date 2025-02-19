@@ -60,7 +60,7 @@ const MyProfile = () => {
       <h2 className="text-2xl my-10">My Profile</h2>
       <div>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <img className="rounded-full" src={photoURL} alt="" />
+          <img className="rounded-full w-[150px] h-[150px] object-cover" src={photoURL} alt="" />
 
           <p><span className="font-bold">Email:</span> {email}</p>
           <div>

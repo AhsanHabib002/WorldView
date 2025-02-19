@@ -63,19 +63,24 @@ const Navabar = () => {
                       <NavLink to="/premium">Premium Articles</NavLink>
                     </li>
                   )}
-                    <li>
+                    {/* <li>
                       <NavLink to="/myprofile">Profile</NavLink>
-                    </li>
+                    </li> */}
+                    <li>
+                    <NavLink to="/dashboard" className="text-[16px]">
+                      Dashboard
+                    </NavLink>
+                  </li>
                   </>
                 )}
 
-                {isAdmin && (
+                {/* {isAdmin && (
                   <li>
                     <NavLink to="/dashboard" className="text-[16px]">
                       Dashboard
                     </NavLink>
                   </li>
-                )}
+                )} */}
               </ul>
             </div>
             <a className="font-cinzel font-extrabold text-[3vw] lg:text-[1.2vw]">
@@ -108,19 +113,24 @@ const Navabar = () => {
                       <NavLink to="/premium">Premium Articles</NavLink>
                     </li>
                   )}
-                  <li>
+                  {/* <li>
                     <NavLink to="/myprofile">Profile</NavLink>
-                  </li>
+                  </li> */}
+                  <li>
+                  <NavLink to="/dashboard" className="text-[16px]">
+                    Dashboard
+                  </NavLink>
+                </li>
                 </>
               )}
 
-              {isAdmin && (
+              {/* {isAdmin && (
                 <li>
                   <NavLink to="/dashboard" className="text-[16px]">
                     Dashboard
                   </NavLink>
                 </li>
-              )}
+              )} */}
             </ul>
           </div>
           <div className="navbar-end  gap-4">
