@@ -98,25 +98,27 @@ const Home = () => {
       </div>
 
       {/* Publishers */}
-      <div className="py-[60px] md:py-[90px]">
-        <h2 className="text-xl mb-10 md:text-6xl font-bold text-center font-cinzel">
+      <div className="py-20 bg-gray-50">
+        <h2 className="text-3xl md:text-5xl font-bold text-center font-cinzel mb-16">
           All Publishers
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-[60px] md:mt-[90px]">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
           {publishers.map((publisher) => (
-            <div key={publisher._id} className="card image-full shadow-xl">
-              <figure className="w-full h-[150px] object-cover">
+            <div
+              key={publisher._id}
+              className="bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300 flex flex-col items-center p-6 group"
+            >
+              <div className="w-32 h-32 overflow-hidden rounded-full mb-4 border-4 border-gray-200 group-hover:border-black transition-all duration-300">
                 <img
-                  className="w-full h-[150px] object-cover"
                   src={publisher.publisher_logo}
-                  alt="Publisher"
+                  alt={publisher.publisher_name}
+                  className="w-full h-full object-cover"
                 />
-              </figure>
-              <div className="card-body flex items-center justify-center">
-                <h2 className="card-title text-center">
-                  {publisher.publisher_name}
-                </h2>
               </div>
+              <h3 className="text-lg md:text-xl font-semibold text-center group-hover:text-black transition">
+                {publisher.publisher_name}
+              </h3>
             </div>
           ))}
         </div>
@@ -124,57 +126,63 @@ const Home = () => {
 
       {/* Plans */}
       <div className="py-20">
-  <h2 className="text-3xl md:text-5xl font-cinzel font-bold text-center mb-16">
-    Choose Your Plan
-  </h2>
+        <h2 className="text-3xl md:text-5xl font-cinzel font-bold text-center mb-16">
+          Choose Your Plan
+        </h2>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
-    {/* Free Plan */}
-    <div className="bg-white shadow-md rounded-2xl p-8 border border-gray-200 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-      <div>
-        <h3 className="text-2xl font-semibold mb-2">Free Plan</h3>
-        <p className="text-3xl font-bold text-black mb-4">$0
-          <span className="text-sm font-normal text-gray-500"> / month</span>
-        </p>
-        <ul className="space-y-3 mb-6 text-gray-700">
-          <li>✅ Access to normal Articles</li>
-          <li>✅ Limited articles per month</li>
-        </ul>
-      </div>
-      <button
-        onClick={handleSubscription}
-        className="w-full py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition mt-4"
-      >
-        Get Started
-      </button>
-    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
+          {/* Free Plan */}
+          <div className="bg-white shadow-md rounded-2xl p-8 border border-gray-200 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <h3 className="text-2xl font-semibold mb-2">Free Plan</h3>
+              <p className="text-3xl font-bold text-black mb-4">
+                $0
+                <span className="text-sm font-normal text-gray-500">
+                  {" "}
+                  / month
+                </span>
+              </p>
+              <ul className="space-y-3 mb-6 text-gray-700">
+                <li>✅ Access to normal Articles</li>
+                <li>✅ Limited articles per month</li>
+              </ul>
+            </div>
+            <button
+              onClick={handleSubscription}
+              className="w-full py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition mt-4"
+            >
+              Get Started
+            </button>
+          </div>
 
-    {/* Premium Plan */}
-    <div className="bg-yellow-300 text-black shadow-lg rounded-2xl p-8 border-2 border-yellow-500 transform scale-[1.02] hover:scale-105 transition-all duration-300 flex flex-col justify-between">
-      <div>
-        <div className="flex justify-between items-center mb-2">
-          <h3 className="text-2xl font-semibold">Premium Plan</h3>
-          <span className="bg-black text-white text-xs px-3 py-1 rounded-full">Popular</span>
+          {/* Premium Plan */}
+          <div className="bg-yellow-300 text-black shadow-lg rounded-2xl p-8 border-2 border-yellow-500 transform scale-[1.02] hover:scale-105 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-2xl font-semibold">Premium Plan</h3>
+                <span className="bg-black text-white text-xs px-3 py-1 rounded-full">
+                  Popular
+                </span>
+              </div>
+              <p className="text-3xl font-bold mb-4">
+                $5 - $100
+                <span className="text-sm font-normal text-black"> / month</span>
+              </p>
+              <ul className="space-y-3 mb-6">
+                <li>✅ Access to premium Articles</li>
+                <li>✅ Unlimited articles per month</li>
+                <li>✅ Priority support</li>
+              </ul>
+            </div>
+            <button
+              onClick={handleSubscription}
+              className="w-full py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition mt-4"
+            >
+              Upgrade to Premium
+            </button>
+          </div>
         </div>
-        <p className="text-3xl font-bold mb-4">$5 - $100
-          <span className="text-sm font-normal text-black"> / month</span>
-        </p>
-        <ul className="space-y-3 mb-6">
-          <li>✅ Access to premium Articles</li>
-          <li>✅ Unlimited articles per month</li>
-          <li>✅ Priority support</li>
-        </ul>
       </div>
-      <button
-        onClick={handleSubscription}
-        className="w-full py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition mt-4"
-      >
-        Upgrade to Premium
-      </button>
-    </div>
-  </div>
-</div>
-
 
       {/* Stats */}
       <div className="py-[60px] md:py-[90px]">
