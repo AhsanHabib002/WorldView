@@ -21,9 +21,11 @@ const Home = () => {
   const { publishers, refetch, isLoading, isError } = usePublishers();
   const [articles] = useArticles();
   const [showModal, setShowModal] = useState(false);
+
   const handleSubscription = () => {
     navigate("/subscription");
   };
+
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -50,6 +52,7 @@ const Home = () => {
       setTotalUserCount(users.length);
     }
   }, [users]);
+
   useEffect(() => {
     const gradient = gradientRef.current;
 
@@ -71,9 +74,11 @@ const Home = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
   if (!users || isLoading) {
     return <div>Loading...</div>;
   }
@@ -81,28 +86,30 @@ const Home = () => {
   return (
     <div>
       {/* Hero */}
-      <div className=" my-8">
+      <div className="my-8">
         <h1 className="font-cinzel font-extrabold text-[7vw] lg:text-[6vw] text-center">
           All Trending News
         </h1>
       </div>
-      {/* trending Articles */}
+
+      {/* Trending Articles */}
       <div className="pb-[90px]">
-        <Trending></Trending>
+        <Trending />
       </div>
-      {/* Publisher */}
+
+      {/* Publishers */}
       <div className="py-[60px] md:py-[90px]">
         <h2 className="text-xl mb-10 md:text-6xl font-bold text-center font-cinzel">
           All Publishers
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4  mt-[60px] md:mt-[90px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-[60px] md:mt-[90px]">
           {publishers.map((publisher) => (
             <div key={publisher._id} className="card image-full shadow-xl">
               <figure className="w-full h-[150px] object-cover">
                 <img
                   className="w-full h-[150px] object-cover"
                   src={publisher.publisher_logo}
-                  alt="Shoes"
+                  alt="Publisher"
                 />
               </figure>
               <div className="card-body flex items-center justify-center">
@@ -115,65 +122,75 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Plan */}
-      <div className="py-[60px] md:py-[90px]">
-        <h2 className="text-xl font-cinzel mb-10 md:text-6xl font-bold text-center">
-          Choose Your Plan
-        </h2>
-        <div className="grid grid-cols-1 justify-center items-center md:grid-cols-2 gap-4 mt-[60px] md:mt-[90px]">
-          <div className="card-body rounded-md bg-black text-white">
-            <h2 className="card-title">Free Plan</h2>
-            <p className="font-bold text-[18px]">$0</p>
-            <ul className="">
-              <li>Access to normal Article</li>
-              <li>Limited articles per month</li>
-            </ul>
-            <div className="card-actions ">
-              <button
-                onClick={handleSubscription}
-                className="btn btn-primary w-full mt-4"
-              >
-                update subscription
-              </button>
-            </div>
-          </div>
+      {/* Plans */}
+      <div className="py-20">
+  <h2 className="text-3xl md:text-5xl font-cinzel font-bold text-center mb-16">
+    Choose Your Plan
+  </h2>
 
-          <div className="card-body rounded-md bg-yellow-500 text-black">
-            <h2 className="card-title">Premium Plan</h2>
-            <p className="font-bold text-[18px]">$5-$100</p>
-            <ul className="">
-              <li>Access to premium Article</li>
-              <li>Unlimited articles per month</li>
-            </ul>
-            <div className="card-actions ">
-              <button
-                onClick={handleSubscription}
-                className="btn btn-primary w-full mt-4"
-              >
-                update subscription
-              </button>
-            </div>
-          </div>
-        </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
+    {/* Free Plan */}
+    <div className="bg-white shadow-md rounded-2xl p-8 border border-gray-200 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+      <div>
+        <h3 className="text-2xl font-semibold mb-2">Free Plan</h3>
+        <p className="text-3xl font-bold text-black mb-4">$0
+          <span className="text-sm font-normal text-gray-500"> / month</span>
+        </p>
+        <ul className="space-y-3 mb-6 text-gray-700">
+          <li>✅ Access to normal Articles</li>
+          <li>✅ Limited articles per month</li>
+        </ul>
       </div>
+      <button
+        onClick={handleSubscription}
+        className="w-full py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition mt-4"
+      >
+        Get Started
+      </button>
+    </div>
+
+    {/* Premium Plan */}
+    <div className="bg-yellow-300 text-black shadow-lg rounded-2xl p-8 border-2 border-yellow-500 transform scale-[1.02] hover:scale-105 transition-all duration-300 flex flex-col justify-between">
+      <div>
+        <div className="flex justify-between items-center mb-2">
+          <h3 className="text-2xl font-semibold">Premium Plan</h3>
+          <span className="bg-black text-white text-xs px-3 py-1 rounded-full">Popular</span>
+        </div>
+        <p className="text-3xl font-bold mb-4">$5 - $100
+          <span className="text-sm font-normal text-black"> / month</span>
+        </p>
+        <ul className="space-y-3 mb-6">
+          <li>✅ Access to premium Articles</li>
+          <li>✅ Unlimited articles per month</li>
+          <li>✅ Priority support</li>
+        </ul>
+      </div>
+      <button
+        onClick={handleSubscription}
+        className="w-full py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition mt-4"
+      >
+        Upgrade to Premium
+      </button>
+    </div>
+  </div>
+</div>
+
 
       {/* Stats */}
       <div className="py-[60px] md:py-[90px]">
         <h2 className="text-xl text-center mb-10 md:text-6xl font-cinzel font-bold">
-          Total User In worldView
+          Total Users in WorldView
         </h2>
-
-        {/*  */}
         <div className="bg-black text-white py-12 px-6 rounded-xl flex justify-around items-center mt-[60px] md:mt-[90px]">
           <div className="text-center mx-4">
-            <h2 className="text-4xl font-bold ">
+            <h2 className="text-4xl font-bold">
               <CountUp end={totalUserCount} duration={7.5} />
             </h2>
             <p className="text-lg mt-2">Users worldwide</p>
           </div>
           <div className="text-center mx-4">
             <h2 className="text-4xl font-bold">
-              <CountUp end={normalUserCount} duration={7.5} s />
+              <CountUp end={normalUserCount} duration={7.5} />
             </h2>
             <p className="text-lg mt-2">Normal users</p>
           </div>
@@ -185,269 +202,130 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* Testimonial */}
+
+      {/* Testimonials */}
       <div className="py-[60px] md:py-[90px]">
-        <div>
-          <h2 className="text-xl text-center mb-10 md:text-6xl font-cinzel font-bold">
-            Community Thoughts
-          </h2>
-          <div className="mt-[60px] md:mt-[90px] grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* testi-1 */}
-            <div className="bg-white shadow-md p-10">
-              <div className="flex flex-col md:flex-row gap-8">
-                <img
-                  className="w-[120px] h-[120px] object-cover rounded-full shrink-0"
-                  src={t1}
-                  alt=""
-                />
-
-                <div className="flex flex-col gap-4">
-                  <h3
-                    className="font-medium
-                     text-[26px]"
-                  >
-                    Jone Babu
-                  </h3>
-
-                  <p className="italic">
-                    "WORLDVIEW has become my go-to news website! The daily
-                    updates keep me informed about important global events in
-                    real time. I love the clean interface, and the ability to
-                    add publishers and articles makes it even more engaging.
-                    Highly recommended for anyone who values accurate and
-                    up-to-date news!"
-                  </p>
+        <h2 className="text-xl text-center mb-10 md:text-6xl font-cinzel font-bold">
+          Community Thoughts
+        </h2>
+        <div className="mt-[60px] md:mt-[90px] grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[t1, t2, t3, t4].map((img, idx) => {
+            const names = [
+              "Jone Babu",
+              "David S",
+              "Rahul Ambani",
+              "Kuddos Kamal",
+            ];
+            const reviews = [
+              "WORLDVIEW has become my go-to news website! The daily updates keep me informed about important global events in real time...",
+              "Finally, a news platform that provides unbiased and well-researched news! WORLDVIEW does an excellent job...",
+              "I appreciate the effort WORLDVIEW puts into keeping the world informed. The site's daily updates ensure...",
+              "WORLDVIEW is more than just a news website; it’s a platform where information flows freely and efficiently...",
+            ];
+            return (
+              <div key={idx} className="bg-white shadow-md p-10">
+                <div className="flex flex-col md:flex-row gap-8">
+                  <img
+                    className="w-[120px] h-[120px] object-cover rounded-full shrink-0"
+                    src={img}
+                    alt="testimonial"
+                  />
+                  <div className="flex flex-col gap-4">
+                    <h3 className="font-medium text-[26px]">{names[idx]}</h3>
+                    <p className="italic">{reviews[idx]}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* testi-2 */}
-            <div className="bg-white shadow-md p-10">
-              <div className="flex flex-col md:flex-row gap-8">
-                <img
-                  className="w-[120px] h-[120px] object-cover rounded-full shrink-0"
-                  src={t2}
-                  alt=""
-                />
-
-                <div className="flex flex-col gap-4">
-                  <h3
-                    className="font-medium
-                     text-[26px]"
-                  >
-                    David S
-                  </h3>
-
-                  <p className="italic">
-                    "Finally, a news platform that provides unbiased and
-                    well-researched news! WORLDVIEW does an excellent job of
-                    covering a wide range of topics, from politics to
-                    technology. The ability to add publishers and contribute
-                    articles makes it a truly interactive space for news lovers
-                    like me!"
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* testi-3 */}
-            <div className="bg-white shadow-md p-10">
-              <div className="flex flex-col md:flex-row gap-8">
-                <img
-                  className="w-[120px] h-[120px] object-cover rounded-full shrink-0"
-                  src={t3}
-                  alt=""
-                />
-
-                <div className="flex flex-col gap-4">
-                  <h3
-                    className="font-medium
-                     text-[26px]"
-                  >
-                    Rahul Ambani
-                  </h3>
-
-                  <p className="italic">
-                    "I appreciate the effort WORLDVIEW puts into keeping the
-                    world informed. The site's daily updates ensure that I never
-                    miss out on important news. The feature that allows users to
-                    add their own publishers and articles makes it a dynamic and
-                    community-driven platform!"
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* testi-4*/}
-            <div className="bg-white shadow-md p-10">
-              <div className="flex flex-col md:flex-row gap-8">
-                <img
-                  className="w-[120px] h-[120px] object-cover rounded-full shrink-0"
-                  src={t4}
-                  alt=""
-                />
-
-                <div className="flex flex-col gap-4">
-                  <h3
-                    className="font-medium
-                     text-[26px]"
-                  >
-                    Kuddos Kamal
-                  </h3>
-
-                  <p className="italic">
-                    "WORLDVIEW is more than just a news website; it’s a platform
-                    where information flows freely and efficiently. The
-                    user-friendly interface, well-structured articles, and the
-                    ability to engage with different publishers make it stand
-                    out. It’s refreshing to see a news website that values both
-                    accuracy and accessibility!"
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
-      {/* Extra Sections */}
-      <div className=" flex flex-col justify-center items-center gap-4 md:flex-row py-[60px] md:py-[90px]">
-        <div className="flex-1 p-10 items-center ">
+
+      {/* Why WorldView */}
+      <div className="flex flex-col justify-center items-center gap-4 md:flex-row py-[60px] md:py-[90px]">
+        <div className="flex-1 p-10 items-center">
           <h2 className="text-xl md:text-5xl lg:text-8xl font-cinzel font-bold">
             Why Read WorldView Daily?
           </h2>
         </div>
         <div className="flex-1">
           <div className="join join-vertical w-full">
-            <div className="collapse collapse-arrow join-item border-base-300 border">
-              <input type="radio" name="my-accordion-4" defaultChecked />
-              <div className="collapse-title text-xl font-medium">
-                World Updated Instantly
+            {[
+              {
+                title: "World Updated Instantly",
+                content:
+                  "In WorldView, you will be able to read all the latest news instantly.",
+              },
+              {
+                title: "Add Articles in WorldView",
+                content:
+                  "If you create an account in WorldView, you can also add articles.",
+              },
+              {
+                title: "Monitor Article Views",
+                content:
+                  "In WorldView, you can see how many users read an article.",
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="collapse collapse-arrow join-item border-base-300 border"
+              >
+                <input
+                  type="radio"
+                  name="my-accordion-4"
+                  defaultChecked={idx === 0}
+                />
+                <div className="collapse-title text-xl font-medium">
+                  {item.title}
+                </div>
+                <div className="collapse-content">
+                  <p>{item.content}</p>
+                </div>
               </div>
-              <div className="collapse-content">
-                <p>
-                  In worldView you will be able to read all the latest news
-                  instantly
-                </p>
-              </div>
-            </div>
-            <div className="collapse collapse-arrow join-item border-base-300 border">
-              <input type="radio" name="my-accordion-4" />
-              <div className="collapse-title text-xl font-medium">
-                Add Article in worldView
-              </div>
-              <div className="collapse-content">
-                <p>
-                  If you create an account in worldVIew you can also add article
-                </p>
-              </div>
-            </div>
-            <div className="collapse collapse-arrow join-item border-base-300 border">
-              <input type="radio" name="my-accordion-4" />
-              <div className="collapse-title text-xl font-medium">
-                Monitoring article view
-              </div>
-              <div className="collapse-content">
-                <p>
-                  In worldView article you will be able to see the how many user
-                  read the article{" "}
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Suggestion form */}
-      <div className="py-[60px] md:py-[90px]">
-        <div>
-          <h2 className="font-cinzel text-xl font-bold md:text-6xl">
-            Any Suggestion for World View?
-          </h2>
-        </div>
-        <div className="rounded-t-[45px] bg-[#F3F3F3] mt-[30px] md:mt-[90px] py-[30px] md:py-[60px] md:pl-[60px]">
-          <div className="flex flex-col md:flex-row justify-end">
-            {/* form Content */}
-            <div className="flex-1">
-              <form className="card-body">
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Name</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Full name"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="email"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Message</span>
-                  </label>
-                  <textarea
-                    placeholder="Write your questions.."
-                    className="textarea textarea-bordered textarea-lg w-full"
-                  ></textarea>
-                </div>
-                <div className="form-control mt-6">
-                  <button className="btn bg-black text-white">Submit</button>
-                </div>
-              </form>
-            </div>
-            {/* form image */}
-            <div className="flex-1 flex justify-end">
-              <img className="max-h-[450px]" src={news} alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        ref={gradientRef}
-        className=" px-6 rounded-lg shadow-lg text-center py-[60px] md:py-[90px] my-[60px] md:my-[90px]"
-      >
-        <h2 className="text-3xl font-bold text-white mb-4">
-          Want to be a subscriber?
+      {/* Suggestion Form */}
+      <div className="py-[60px] md:py-[90px] px-4">
+        <h2 className="font-cinzel text-xl font-bold md:text-6xl text-center mb-12">
+          Any Suggestions for WorldView?
         </h2>
-        <Link to="/subscription">
-          <button className="bg-black text-white  font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300">
-            Subscribe Now
-          </button>
-        </Link>
-      </div>
-
-      {/* modal */}
-      {/* {showModal && (
-        <div className="z-10 fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white relative p-6 rounded-lg shadow-lg">
-            <button
-              onClick={handleCloseModal}
-              className="absolute top-2 right-2 text-gray-600 hover:text-black"
-              aria-label="Close Modal"
-            >
-              ✖
-            </button>
-            <h2 className="text-xl font-bold mb-4">Unlock Premium Features!</h2>
-            <p className="mb-4">
-              Enjoy exclusive premium content by subscribing to our service.
-            </p>
-            <button
-              className="btn bg-black text-white w-full"
-              onClick={handleSubscription}
-            >
-              Subscribe Now
-            </button>
+        <div className="flex flex-col md:flex-row gap-8 items-center">
+          <div className="flex-1">
+            <img
+              src={news}
+              alt="suggestion"
+              className="w-full rounded-2xl max-h-[350px] object-cover"
+            />
           </div>
+          <form className="flex-1 bg-white shadow-md p-8 rounded-lg space-y-4">
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="input input-bordered w-full"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="input input-bordered w-full"
+              required
+            />
+            <textarea
+              className="textarea textarea-bordered w-full"
+              placeholder="Your Suggestion"
+              rows={5}
+              required
+            />
+            <button type="submit" className="btn btn-primary w-full">
+              Submit Suggestion
+            </button>
+          </form>
         </div>
-      )} */}
+      </div>
     </div>
   );
 };
